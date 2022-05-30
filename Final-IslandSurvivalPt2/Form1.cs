@@ -12,24 +12,34 @@ namespace Final_IslandSurvivalPt2
 {
     public partial class Form1 : Form
     {
+        Rectangle mainIsland = new Rectangle(75, 100, 300, 400);
+        Rectangle beachyIsland = new Rectangle(75, 475 , 300, 60);
+        Rectangle boat = new Rectangle(100, 515, 20, 30);
+        Rectangle tool = new Rectangle(200, 500, 20, 20);
         Rectangle hero = new Rectangle(10, 10, 15, 25);
         int heroSpeed = 10;
 
+        //creating enemies
         List<Rectangle> enemy = new List<Rectangle>();
         List<int> enemySpeeds = new List<int>();
         int enemySize = 10;
 
+        //creating resources
+        List<Rectangle> resource = new List<Rectangle>();
+
+        //control keys
         bool leftDown = false;
         bool rightDown = false;
         bool upDown = false;
         bool downDown = false;
 
+        //brushes
         SolidBrush greenBrush = new SolidBrush(Color.Green);
         SolidBrush goldBrush = new SolidBrush(Color.Gold);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
+        SolidBrush brownBrush = new SolidBrush(Color.Brown);
 
         Random randGen = new Random();
-        int randValue = 0;
 
         int counter = 0;
         string gameState = "waiting";
@@ -134,11 +144,12 @@ namespace Final_IslandSurvivalPt2
                 enemy[i] = new Rectangle(enemy[i].X, y, enemySize, enemySize);
             }
 
-            //add new
+            //add new enemy
             counter++;
             if (enemy.Count <= 1)
             {
-                enemy.Add(new Rectangle(200, 50, 10, 15));
+                //starts more in on island
+                enemy.Add(new Rectangle(200, mainIsland.Y, 10, 15));
                 enemySpeeds.Add(randGen.Next(1, 4));
                 counter = 0;
             }
@@ -149,8 +160,9 @@ namespace Final_IslandSurvivalPt2
             //currently removes when bottom of screen is reached
             for (int i = 0; i < enemy.Count(); i++)
             {
-                if (enemy[i].Y > this.Height - enemySize)
+                if (enemy[i].Y > mainIsland.Height)
                 {
+                    //turn around
                     enemy.RemoveAt(i);
                     enemySpeeds.RemoveAt(i);
                 }
@@ -168,8 +180,21 @@ namespace Final_IslandSurvivalPt2
             }
             else if (gameState == "running")
             {
+                //change back colour
+                this.BackColor = Color.MediumTurquoise;
+
                 //draw hero
                 e.Graphics.FillRectangle(whiteBrush, hero);
+
+                //draw island
+                e.Graphics.FillRectangle(greenBrush, mainIsland);
+                e.Graphics.FillRectangle(goldBrush, beachyIsland);
+
+                //draw boat
+                e.Graphics.FillRectangle(brownBrush, boat);
+
+                //draw first tool
+                //e.Graphics.DrawImage(Properties.Resources.);
 
                 //draw enemies
                 for (int i = 0; i < enemy.Count(); i++)

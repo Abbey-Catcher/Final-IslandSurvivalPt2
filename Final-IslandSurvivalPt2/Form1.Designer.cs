@@ -43,7 +43,7 @@
             // 
             this.titleLabel.BackColor = System.Drawing.Color.Transparent;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.titleLabel.Location = new System.Drawing.Point(12, 92);
+            this.titleLabel.Location = new System.Drawing.Point(42, 128);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(376, 97);
             this.titleLabel.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             this.subtitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.subtitleLabel.Location = new System.Drawing.Point(12, 225);
+            this.subtitleLabel.Location = new System.Drawing.Point(42, 264);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(376, 108);
             this.subtitleLabel.TabIndex = 1;
@@ -66,7 +66,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Orchid;
-            this.ClientSize = new System.Drawing.Size(400, 500);
+            this.ClientSize = new System.Drawing.Size(480, 610);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.titleLabel);
             this.DoubleBuffered = true;
