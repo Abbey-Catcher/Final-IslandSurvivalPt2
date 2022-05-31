@@ -146,10 +146,10 @@ namespace Final_IslandSurvivalPt2
 
             //add new enemy
             counter++;
-            if (enemy.Count <= 1)
+            if (enemy.Count <= 1 && counter > 100)
             {
                 //starts more in on island
-                enemy.Add(new Rectangle(200, mainIsland.Y, 10, 15));
+                enemy.Add(new Rectangle(200, mainIsland.Y + 40, 10, 15));
                 enemySpeeds.Add(randGen.Next(1, 4));
                 counter = 0;
             }
@@ -157,14 +157,18 @@ namespace Final_IslandSurvivalPt2
             //removes when off screen
             //
             //edit code so enemy goes back to base and then gets removed
-            //currently removes when bottom of screen is reached
             for (int i = 0; i < enemy.Count(); i++)
             {
-                if (enemy[i].Y > mainIsland.Height)
+                if (enemy[i].Y > beachyIsland.Y - enemy[i].Height)
                 {
                     //turn around
+                    enemySpeeds[i] = enemySpeeds[i] * -1;
+                }
+                else if (enemy[i].Y < mainIsland.Y + 20)
+                {
                     enemy.RemoveAt(i);
                     enemySpeeds.RemoveAt(i);
+                    counter = 0;
                 }
             }
 
@@ -195,6 +199,12 @@ namespace Final_IslandSurvivalPt2
 
                 //draw first tool
                 //e.Graphics.DrawImage(Properties.Resources.);
+
+                //draw resources
+                for (int i = 0; i < resource.Count(); i++)
+                {
+                    e.Graphics.FillRectangle(brownBrush, resource[i]);
+                }
 
                 //draw enemies
                 for (int i = 0; i < enemy.Count(); i++)
