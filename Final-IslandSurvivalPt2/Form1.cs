@@ -38,6 +38,9 @@ namespace Final_IslandSurvivalPt2
         Rectangle resource1 = new Rectangle(125, 250, 20, 20);
         Rectangle resource2 = new Rectangle(325, 250, 20, 20);
         Rectangle resource3 = new Rectangle(250, 400, 20, 20);
+        bool resource01 = false;
+        bool resource02 = false;
+        bool resource03 = false;
 
         //control keys
         bool leftDown = false;
@@ -56,6 +59,7 @@ namespace Final_IslandSurvivalPt2
         Random randGen = new Random();
 
         int counter = 0;
+        int rCounter = 0;
         string gameState = "waiting";
 
         public Form1()
@@ -192,6 +196,32 @@ namespace Final_IslandSurvivalPt2
                 axe = true;
             }
 
+            if (hero.IntersectsWith(resource1) && resource01 == false)
+            {
+                resource01 = true;
+            }
+            else if (hero.IntersectsWith(resource2) && resource02 == false)
+            {
+                resource02 = true;
+            }
+            else if (hero.IntersectsWith(resource3) && resource03 == false)
+            {
+                resource03 = true;
+            }
+
+            if (resource01 == true || resource02 == true || resource03 == true)
+            {
+                rCounter++;
+            }
+
+            //if counter >= 8 seconds, set bools to false
+            if (rCounter >= 400)
+            {
+                resource01 = false;
+                rCounter = 0;
+            }
+
+            //what you need to build boat and win
             if (hero.IntersectsWith(boat) && wood == 20)
             {
 
@@ -228,27 +258,35 @@ namespace Final_IslandSurvivalPt2
                 //{
                 //    e.Graphics.FillRectangle(brownBrush, resource[i]);
                 //}
-                e.Graphics.FillRectangle(resource, resource1);
-                e.Graphics.FillRectangle(goldBrush, resource2);
-                e.Graphics.FillRectangle(goldBrush, resource3);
 
                 //regenerating resource
-                int rCounter = 0;
-                if (hero.IntersectsWith(resource1))
+                if (resource01 == true)
                 {
                     e.Graphics.FillRectangle(resourceReload, resource1);
-                    rCounter++;
                 }
-                else if (hero.IntersectsWith(resource2))
+                else
+                {
+                    e.Graphics.FillRectangle(resource, resource1);
+                }
+
+                if (resource02 == true)
                 {
                     e.Graphics.FillRectangle(resourceReload, resource2);
-                    rCounter++;
                 }
-                else if (hero.IntersectsWith(resource3))
+                else
+                {
+                    e.Graphics.FillRectangle(resource, resource2);
+                }
+
+                if (resource03 == true)
                 {
                     e.Graphics.FillRectangle(resourceReload, resource3);
-                    rCounter++;
                 }
+                else
+                {
+                    e.Graphics.FillRectangle(resource, resource3);
+                }
+
 
                 //draw enemies
                 for (int i = 0; i < enemy.Count(); i++)
