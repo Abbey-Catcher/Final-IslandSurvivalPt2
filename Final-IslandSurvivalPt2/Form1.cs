@@ -19,13 +19,25 @@ namespace Final_IslandSurvivalPt2
         Rectangle hero = new Rectangle(10, 10, 15, 25);
         int heroSpeed = 10;
 
+        //inventory contents
+        bool axe = false;
+        bool pickaxe = false;
+        bool sword = false;
+        bool hammer = false;
+        int wood = 0;
+        int stone = 0;
+        int iron = 0;
+
         //creating enemies
         List<Rectangle> enemy = new List<Rectangle>();
         List<int> enemySpeeds = new List<int>();
         int enemySize = 10;
 
         //creating resources
-        List<Rectangle> resource = new List<Rectangle>();
+        //List<Rectangle> resource = new List<Rectangle>();
+        Rectangle resource1 = new Rectangle(125, 250, 20, 20);
+        Rectangle resource2 = new Rectangle(325, 250, 20, 20);
+        Rectangle resource3 = new Rectangle(250, 400, 20, 20);
 
         //control keys
         bool leftDown = false;
@@ -38,6 +50,8 @@ namespace Final_IslandSurvivalPt2
         SolidBrush goldBrush = new SolidBrush(Color.Gold);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush brownBrush = new SolidBrush(Color.Brown);
+        SolidBrush resource = new SolidBrush(Color.DarkGoldenrod);
+        SolidBrush resourceReload = new SolidBrush(Color.Goldenrod);
 
         Random randGen = new Random();
 
@@ -172,6 +186,17 @@ namespace Final_IslandSurvivalPt2
                 }
             }
 
+            if (hero.IntersectsWith(tool))
+            {
+                //add tool to inventory
+                axe = true;
+            }
+
+            if (hero.IntersectsWith(boat) && wood == 20)
+            {
+
+            }
+
             Refresh();
         }
 
@@ -187,9 +212,6 @@ namespace Final_IslandSurvivalPt2
                 //change back colour
                 this.BackColor = Color.MediumTurquoise;
 
-                //draw hero
-                e.Graphics.FillRectangle(whiteBrush, hero);
-
                 //draw island
                 e.Graphics.FillRectangle(greenBrush, mainIsland);
                 e.Graphics.FillRectangle(goldBrush, beachyIsland);
@@ -198,12 +220,34 @@ namespace Final_IslandSurvivalPt2
                 e.Graphics.FillRectangle(brownBrush, boat);
 
                 //draw first tool
-                //e.Graphics.DrawImage(Properties.Resources.);
+                e.Graphics.DrawImage(Properties.Resources.Axe_Final, tool);
 
                 //draw resources
-                for (int i = 0; i < resource.Count(); i++)
+                //
+                //for (int i = 0; i < resource.Count(); i++)
+                //{
+                //    e.Graphics.FillRectangle(brownBrush, resource[i]);
+                //}
+                e.Graphics.FillRectangle(resource, resource1);
+                e.Graphics.FillRectangle(goldBrush, resource2);
+                e.Graphics.FillRectangle(goldBrush, resource3);
+
+                //regenerating resource
+                int rCounter = 0;
+                if (hero.IntersectsWith(resource1))
                 {
-                    e.Graphics.FillRectangle(brownBrush, resource[i]);
+                    e.Graphics.FillRectangle(resourceReload, resource1);
+                    rCounter++;
+                }
+                else if (hero.IntersectsWith(resource2))
+                {
+                    e.Graphics.FillRectangle(resourceReload, resource2);
+                    rCounter++;
+                }
+                else if (hero.IntersectsWith(resource3))
+                {
+                    e.Graphics.FillRectangle(resourceReload, resource3);
+                    rCounter++;
                 }
 
                 //draw enemies
@@ -211,6 +255,9 @@ namespace Final_IslandSurvivalPt2
                 {
                     e.Graphics.FillRectangle(goldBrush, enemy[i]);
                 }
+
+                //draw hero
+                e.Graphics.FillRectangle(whiteBrush, hero);
             }
         }
     }
