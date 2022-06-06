@@ -32,6 +32,8 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
+            this.inventoryButton = new System.Windows.Forms.Button();
+            this.inventoryLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -61,12 +63,36 @@
             this.subtitleLabel.Text = "subtitle label";
             this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // inventoryButton
+            // 
+            this.inventoryButton.Enabled = false;
+            this.inventoryButton.Image = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
+            this.inventoryButton.Location = new System.Drawing.Point(12, 376);
+            this.inventoryButton.Name = "inventoryButton";
+            this.inventoryButton.Size = new System.Drawing.Size(48, 40);
+            this.inventoryButton.TabIndex = 2;
+            this.inventoryButton.Text = "Inventory";
+            this.inventoryButton.UseVisualStyleBackColor = true;
+            this.inventoryButton.Visible = false;
+            this.inventoryButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
+            // inventoryLabel
+            // 
+            this.inventoryLabel.Location = new System.Drawing.Point(114, 376);
+            this.inventoryLabel.Name = "inventoryLabel";
+            this.inventoryLabel.Size = new System.Drawing.Size(313, 54);
+            this.inventoryLabel.TabIndex = 3;
+            this.inventoryLabel.Text = "inventory label";
+            this.inventoryLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(480, 610);
+            this.Controls.Add(this.inventoryLabel);
+            this.Controls.Add(this.inventoryButton);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.titleLabel);
             this.DoubleBuffered = true;
@@ -85,6 +111,8 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label subtitleLabel;
+        private System.Windows.Forms.Button inventoryButton;
+        private System.Windows.Forms.Label inventoryLabel;
     }
 }
 

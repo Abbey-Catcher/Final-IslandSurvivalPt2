@@ -69,5 +69,15 @@ namespace Final_IslandSurvivalPt2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap inventoryBag {
+            get {
+                object obj = ResourceManager.GetObject("inventoryBag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

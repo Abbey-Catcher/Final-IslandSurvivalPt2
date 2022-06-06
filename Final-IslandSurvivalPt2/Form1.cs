@@ -34,7 +34,6 @@ namespace Final_IslandSurvivalPt2
         int enemySize = 10;
 
         //creating resources
-        //List<Rectangle> resource = new List<Rectangle>();
         Rectangle resource1 = new Rectangle(125, 250, 20, 20);
         Rectangle resource2 = new Rectangle(325, 250, 20, 20);
         Rectangle resource3 = new Rectangle(250, 400, 20, 20);
@@ -71,7 +70,10 @@ namespace Final_IslandSurvivalPt2
         {
             titleLabel.Text = "";
             subtitleLabel.Text = "";
+            inventoryLabel.Text = "";
 
+            inventoryButton.Enabled = true;
+            inventoryButton.Visible = true;
             gameTimer.Enabled = true;
             gameState = "running";
             enemy.Clear();
@@ -196,17 +198,21 @@ namespace Final_IslandSurvivalPt2
                 axe = true;
             }
 
+            //regenerating resources
             if (hero.IntersectsWith(resource1) && resource01 == false)
             {
                 resource01 = true;
+                stone++;
             }
             else if (hero.IntersectsWith(resource2) && resource02 == false)
             {
                 resource02 = true;
+                iron++;
             }
             else if (hero.IntersectsWith(resource3) && resource03 == false)
             {
                 resource03 = true;
+                wood++;
             }
 
             if (resource01 == true || resource02 == true || resource03 == true)
@@ -250,14 +256,10 @@ namespace Final_IslandSurvivalPt2
                 e.Graphics.FillRectangle(brownBrush, boat);
 
                 //draw first tool
-                e.Graphics.DrawImage(Properties.Resources.Axe_Final, tool);
-
-                //draw resources
-                //
-                //for (int i = 0; i < resource.Count(); i++)
-                //{
-                //    e.Graphics.FillRectangle(brownBrush, resource[i]);
-                //}
+                if (axe == false)
+                {
+                    e.Graphics.DrawImage(Properties.Resources.Axe_Final, tool);
+                }
 
                 //regenerating resource
                 if (resource01 == true)
@@ -296,6 +298,19 @@ namespace Final_IslandSurvivalPt2
 
                 //draw hero
                 e.Graphics.FillRectangle(whiteBrush, hero);
+            }
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            inventoryLabel.Visible = true;
+            if (axe == true)
+            {
+                inventoryLabel.Text = "1";
+            }
+            else
+            {
+                inventoryLabel.Text = "0";
             }
         }
     }
