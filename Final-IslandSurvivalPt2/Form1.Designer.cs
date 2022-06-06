@@ -32,8 +32,8 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
-            this.inventoryButton = new System.Windows.Forms.Button();
             this.inventoryLabel = new System.Windows.Forms.Label();
+            this.inventoryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -63,19 +63,6 @@
             this.subtitleLabel.Text = "subtitle label";
             this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // inventoryButton
-            // 
-            this.inventoryButton.Enabled = false;
-            this.inventoryButton.Image = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
-            this.inventoryButton.Location = new System.Drawing.Point(12, 376);
-            this.inventoryButton.Name = "inventoryButton";
-            this.inventoryButton.Size = new System.Drawing.Size(48, 40);
-            this.inventoryButton.TabIndex = 2;
-            this.inventoryButton.Text = "Inventory";
-            this.inventoryButton.UseVisualStyleBackColor = true;
-            this.inventoryButton.Visible = false;
-            this.inventoryButton.Click += new System.EventHandler(this.testButton_Click);
-            // 
             // inventoryLabel
             // 
             this.inventoryLabel.Location = new System.Drawing.Point(114, 376);
@@ -84,6 +71,19 @@
             this.inventoryLabel.TabIndex = 3;
             this.inventoryLabel.Text = "inventory label";
             this.inventoryLabel.Visible = false;
+            // 
+            // inventoryButton
+            // 
+            this.inventoryButton.BackgroundImage = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
+            this.inventoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.inventoryButton.Enabled = false;
+            this.inventoryButton.Location = new System.Drawing.Point(12, 376);
+            this.inventoryButton.Name = "inventoryButton";
+            this.inventoryButton.Size = new System.Drawing.Size(48, 40);
+            this.inventoryButton.TabIndex = 2;
+            this.inventoryButton.UseVisualStyleBackColor = true;
+            this.inventoryButton.Visible = false;
+            this.inventoryButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // Form1
             // 
