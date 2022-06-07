@@ -49,6 +49,7 @@ namespace Final_IslandSurvivalPt2
         bool rightDown = false;
         bool upDown = false;
         bool downDown = false;
+        bool i = false;
 
         //brushes
         SolidBrush greenBrush = new SolidBrush(Color.Green);
@@ -75,13 +76,13 @@ namespace Final_IslandSurvivalPt2
             subtitleLabel.Text = "";
             inventoryLabel.Text = "";
 
-            inventoryButton.Enabled = true;
-            inventoryButton.Visible = true;
+      //      inventoryButton.Enabled = true;
+       //     inventoryButton.Visible = true;
             gameTimer.Enabled = true;
             gameState = "running";
             enemy.Clear();
             enemySpeeds.Clear();
-
+            this.Focus();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -110,6 +111,12 @@ namespace Final_IslandSurvivalPt2
                     if (gameState == "waiting" || gameState == "over")
                     {
                         Application.Exit();
+                    }
+                    break;
+                case Keys.I:
+                    if (gameState == "running")
+                    {
+                        inventoryLabel.Text = $"";
                     }
                     break;
             }
@@ -318,23 +325,6 @@ namespace Final_IslandSurvivalPt2
                 titleLabel.Text = "Oh no! \nYou died!";
                 subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
             }
-        }
-
-        private void inventoryButton_Click(object sender, EventArgs e)
-        {
-            inventoryLabel.Visible = true;
-            for (int i = 0; i < inventory.Count(); i++)
-            {
-                inventoryLabel.Text = $"{inventory[i]}";
-                    }
-            //if (axe == true)
-            //{
-            //    inventoryLabel.Text = "1";
-            //}
-            //else
-            //{
-            //    inventoryLabel.Text = "0";
-            //}
         }
     }
 }

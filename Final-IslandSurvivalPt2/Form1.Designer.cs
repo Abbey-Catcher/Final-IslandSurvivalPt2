@@ -33,7 +33,8 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
             this.inventoryLabel = new System.Windows.Forms.Label();
-            this.inventoryButton = new System.Windows.Forms.Button();
+            this.inventoryImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryImage)).BeginInit();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -67,23 +68,20 @@
             // 
             this.inventoryLabel.Location = new System.Drawing.Point(56, 568);
             this.inventoryLabel.Name = "inventoryLabel";
-            this.inventoryLabel.Size = new System.Drawing.Size(412, 40);
+            this.inventoryLabel.Size = new System.Drawing.Size(412, 33);
             this.inventoryLabel.TabIndex = 3;
             this.inventoryLabel.Text = "inventory label";
             this.inventoryLabel.Visible = false;
             // 
-            // inventoryButton
+            // inventoryImage
             // 
-            this.inventoryButton.BackgroundImage = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
-            this.inventoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.inventoryButton.Enabled = false;
-            this.inventoryButton.Location = new System.Drawing.Point(2, 568);
-            this.inventoryButton.Name = "inventoryButton";
-            this.inventoryButton.Size = new System.Drawing.Size(48, 40);
-            this.inventoryButton.TabIndex = 2;
-            this.inventoryButton.UseVisualStyleBackColor = true;
-            this.inventoryButton.Visible = false;
-            this.inventoryButton.Click += new System.EventHandler(this.inventoryButton_Click);
+            this.inventoryImage.Image = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
+            this.inventoryImage.Location = new System.Drawing.Point(4, 566);
+            this.inventoryImage.Name = "inventoryImage";
+            this.inventoryImage.Size = new System.Drawing.Size(46, 40);
+            this.inventoryImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.inventoryImage.TabIndex = 4;
+            this.inventoryImage.TabStop = false;
             // 
             // Form1
             // 
@@ -91,17 +89,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(480, 610);
+            this.Controls.Add(this.inventoryImage);
             this.Controls.Add(this.inventoryLabel);
-            this.Controls.Add(this.inventoryButton);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.titleLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
-            this.Text = "Island Survival Pt. 2";
+            this.Text = "islandSurvival";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -111,8 +110,8 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label subtitleLabel;
-        private System.Windows.Forms.Button inventoryButton;
         private System.Windows.Forms.Label inventoryLabel;
+        private System.Windows.Forms.PictureBox inventoryImage;
     }
 }
 
