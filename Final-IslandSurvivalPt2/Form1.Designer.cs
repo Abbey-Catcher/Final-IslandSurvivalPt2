@@ -45,9 +45,9 @@
             // 
             this.titleLabel.BackColor = System.Drawing.Color.Transparent;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.titleLabel.Location = new System.Drawing.Point(42, 128);
+            this.titleLabel.Location = new System.Drawing.Point(42, 74);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(376, 97);
+            this.titleLabel.Size = new System.Drawing.Size(376, 151);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "title label";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -65,9 +65,9 @@
             // 
             // inventoryLabel
             // 
-            this.inventoryLabel.Location = new System.Drawing.Point(114, 376);
+            this.inventoryLabel.Location = new System.Drawing.Point(56, 568);
             this.inventoryLabel.Name = "inventoryLabel";
-            this.inventoryLabel.Size = new System.Drawing.Size(313, 54);
+            this.inventoryLabel.Size = new System.Drawing.Size(412, 40);
             this.inventoryLabel.TabIndex = 3;
             this.inventoryLabel.Text = "inventory label";
             this.inventoryLabel.Visible = false;
@@ -77,13 +77,13 @@
             this.inventoryButton.BackgroundImage = global::Final_IslandSurvivalPt2.Properties.Resources.inventoryBag;
             this.inventoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.inventoryButton.Enabled = false;
-            this.inventoryButton.Location = new System.Drawing.Point(12, 376);
+            this.inventoryButton.Location = new System.Drawing.Point(2, 568);
             this.inventoryButton.Name = "inventoryButton";
             this.inventoryButton.Size = new System.Drawing.Size(48, 40);
             this.inventoryButton.TabIndex = 2;
             this.inventoryButton.UseVisualStyleBackColor = true;
             this.inventoryButton.Visible = false;
-            this.inventoryButton.Click += new System.EventHandler(this.testButton_Click);
+            this.inventoryButton.Click += new System.EventHandler(this.inventoryButton_Click);
             // 
             // Form1
             // 

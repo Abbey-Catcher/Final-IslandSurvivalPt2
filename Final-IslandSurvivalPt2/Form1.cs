@@ -28,6 +28,9 @@ namespace Final_IslandSurvivalPt2
         int stone = 0;
         int iron = 0;
 
+        //inventory system
+        List<int> inventory = new List<int>();
+
         //creating enemies
         List<Rectangle> enemy = new List<Rectangle>();
         List<int> enemySpeeds = new List<int>();
@@ -192,10 +195,16 @@ namespace Final_IslandSurvivalPt2
                 }
             }
 
-            if (hero.IntersectsWith(tool))
+            //adds axe to inventory
+            for (int i = 0; i < inventory.Count(); i++)
             {
-                //add tool to inventory
-                axe = true;
+                if (hero.IntersectsWith(tool))
+                {
+                    //add tool to inventory
+                    axe = true;
+                    wood++;
+                    inventory.Add(wood);
+                }
             }
 
             //regenerating resources
@@ -241,7 +250,7 @@ namespace Final_IslandSurvivalPt2
             if (gameState == "waiting")
             {
                 titleLabel.Text = "IslandSurvival";
-                subtitleLabel.Text = "Press Space Bar to Start or Escape to Exit";
+                subtitleLabel.Text = "Press Space Bar to Start or Esc to Exit";
             }
             else if (gameState == "running")
             {
@@ -299,19 +308,33 @@ namespace Final_IslandSurvivalPt2
                 //draw hero
                 e.Graphics.FillRectangle(whiteBrush, hero);
             }
+            else if (gameState == "win")
+            {
+                titleLabel.Text = "Yay! \nYou repaired the boat and got off the island!";
+                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
+            }
+            else if (gameState == "lose")
+            {
+                titleLabel.Text = "Oh no! \nYou died!";
+                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
+            }
         }
 
-        private void testButton_Click(object sender, EventArgs e)
+        private void inventoryButton_Click(object sender, EventArgs e)
         {
             inventoryLabel.Visible = true;
-            if (axe == true)
+            for (int i = 0; i < inventory.Count(); i++)
             {
-                inventoryLabel.Text = "1";
-            }
-            else
-            {
-                inventoryLabel.Text = "0";
-            }
+                inventoryLabel.Text = $"{inventory[i]}";
+                    }
+            //if (axe == true)
+            //{
+            //    inventoryLabel.Text = "1";
+            //}
+            //else
+            //{
+            //    inventoryLabel.Text = "0";
+            //}
         }
     }
 }
