@@ -82,6 +82,7 @@
             this.inventoryImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.inventoryImage.TabIndex = 4;
             this.inventoryImage.TabStop = false;
+            this.inventoryImage.Visible = false;
             // 
             // Form1
             // 

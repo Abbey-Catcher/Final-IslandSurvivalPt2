@@ -29,7 +29,7 @@ namespace Final_IslandSurvivalPt2
         int iron = 0;
 
         //inventory system
-        List<int> inventory = new List<int>();
+        List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
 
         //creating enemies
         List<Rectangle> enemy = new List<Rectangle>();
@@ -49,15 +49,14 @@ namespace Final_IslandSurvivalPt2
         bool rightDown = false;
         bool upDown = false;
         bool downDown = false;
-        bool i = false;
 
         //brushes
         SolidBrush greenBrush = new SolidBrush(Color.Green);
         SolidBrush goldBrush = new SolidBrush(Color.Gold);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush brownBrush = new SolidBrush(Color.Brown);
-        SolidBrush resource = new SolidBrush(Color.DarkGoldenrod);
-        SolidBrush resourceReload = new SolidBrush(Color.Goldenrod);
+        SolidBrush resourceReload = new SolidBrush(Color.DarkGoldenrod);
+        SolidBrush resource = new SolidBrush(Color.Goldenrod);
 
         Random randGen = new Random();
 
@@ -76,13 +75,11 @@ namespace Final_IslandSurvivalPt2
             subtitleLabel.Text = "";
             inventoryLabel.Text = "";
 
-      //      inventoryButton.Enabled = true;
-       //     inventoryButton.Visible = true;
+            inventoryImage.Visible = true;
             gameTimer.Enabled = true;
             gameState = "running";
             enemy.Clear();
             enemySpeeds.Clear();
-            this.Focus();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -116,7 +113,9 @@ namespace Final_IslandSurvivalPt2
                 case Keys.I:
                     if (gameState == "running")
                     {
-                        inventoryLabel.Text = $"";
+                        inventoryLabel.Text = $"Wood: {inventory[4]}\n";
+                        inventoryLabel.Text = $"Stone: {inventory[5]}\n";
+                        inventoryLabel.Text = $"Iron: {inventory[6]}\n";
                     }
                     break;
             }
@@ -203,14 +202,14 @@ namespace Final_IslandSurvivalPt2
             }
 
             //adds axe to inventory
-            for (int i = 0; i < inventory.Count(); i++)
+            //for (int i = 0; i < inventory.Count(); i++)
             {
                 if (hero.IntersectsWith(tool))
                 {
                     //add tool to inventory
                     axe = true;
-                    wood++;
-                    inventory.Add(wood);
+                   // wood++;
+                    inventory[4]++;
                 }
             }
 
