@@ -24,9 +24,10 @@ namespace Final_IslandSurvivalPt2
         bool pickaxe = false;
         bool sword = false;
         bool hammer = false;
-        int wood = 0;
-        int stone = 0;
-        int iron = 0;
+        //int wood = 0;
+        //int stone = 0;
+        //int iron = 0;
+
 
         //inventory system
         List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
@@ -73,7 +74,7 @@ namespace Final_IslandSurvivalPt2
         {
             titleLabel.Text = "";
             subtitleLabel.Text = "";
-            inventoryLabel.Text = "";
+            inventoryTLabel.Text = "";
 
             inventoryImage.Visible = true;
             gameTimer.Enabled = true;
@@ -113,9 +114,17 @@ namespace Final_IslandSurvivalPt2
                 case Keys.I:
                     if (gameState == "running")
                     {
-                        inventoryLabel.Text = $"Wood: {inventory[4]}\n";
-                        inventoryLabel.Text = $"Stone: {inventory[5]}\n";
-                        inventoryLabel.Text = $"Iron: {inventory[6]}\n";
+                        inventoryTLabel.Visible = true;
+                        inventoryRLabel.Visible = true;
+
+                        inventoryTLabel.Text = $"Axe:   {inventory[0]}\n";
+                        inventoryTLabel.Text += $"Pickaxe: {inventory[1]}\n";
+                        inventoryTLabel.Text += $"Sword:  {inventory[2]}\n";
+                        inventoryTLabel.Text += $"Hammer:  {inventory[3]}\n";
+
+                        inventoryRLabel.Text = $"Wood: {inventory[4]}\n";
+                        inventoryRLabel.Text += $"Stone:  {inventory[5]}\n";
+                        inventoryRLabel.Text += $"Iron:  {inventory[6]}\n";
                     }
                     break;
             }
@@ -208,8 +217,6 @@ namespace Final_IslandSurvivalPt2
                 {
                     //add tool to inventory
                     axe = true;
-                   // wood++;
-                    inventory[4]++;
                 }
             }
 
@@ -217,17 +224,17 @@ namespace Final_IslandSurvivalPt2
             if (hero.IntersectsWith(resource1) && resource01 == false)
             {
                 resource01 = true;
-                stone++;
+                inventory[5]++;
             }
             else if (hero.IntersectsWith(resource2) && resource02 == false)
             {
                 resource02 = true;
-                iron++;
+                inventory[6]++;
             }
             else if (hero.IntersectsWith(resource3) && resource03 == false)
             {
                 resource03 = true;
-                wood++;
+                inventory[4]++;
             }
 
             if (resource01 == true || resource02 == true || resource03 == true)
@@ -243,7 +250,7 @@ namespace Final_IslandSurvivalPt2
             }
 
             //what you need to build boat and win
-            if (hero.IntersectsWith(boat) && wood == 20)
+            if (hero.IntersectsWith(boat) && inventory[4] == 20)
             {
 
             }
