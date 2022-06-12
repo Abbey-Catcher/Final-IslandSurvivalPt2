@@ -15,9 +15,15 @@ namespace Final_IslandSurvivalPt2
         Rectangle mainIsland = new Rectangle(75, 100, 300, 400);
         Rectangle beachyIsland = new Rectangle(75, 475 , 300, 60);
         Rectangle boat = new Rectangle(100, 515, 20, 30);
-        Rectangle tool = new Rectangle(200, 500, 20, 20);
-        Rectangle hero = new Rectangle(10, 10, 15, 25);
+
+        Rectangle axeTool = new Rectangle(200, 500, 20, 20);
+        Rectangle pickaxeTool = new Rectangle(200, 500, 20, 20);
+        Rectangle swordTool = new Rectangle(200, 500, 20, 20);
+        Rectangle hammerTool = new Rectangle(200, 500, 20, 20);
+
+        Rectangle hero = new Rectangle(10, 10, 30, 40);
         int heroSpeed = 10;
+        int heroLives = 10;
 
         //inventory contents
         bool axe = false;
@@ -36,6 +42,7 @@ namespace Final_IslandSurvivalPt2
         List<Rectangle> enemy = new List<Rectangle>();
         List<int> enemySpeeds = new List<int>();
         int enemySize = 10;
+        int enemyLives = 10;
 
         //creating resources
         Rectangle resource1 = new Rectangle(125, 250, 20, 20);
@@ -60,6 +67,8 @@ namespace Final_IslandSurvivalPt2
         SolidBrush resource = new SolidBrush(Color.Goldenrod);
 
         Random randGen = new Random();
+
+
 
         int counter = 0;
         int rCounter = 0;
@@ -146,30 +155,39 @@ namespace Final_IslandSurvivalPt2
                 case Keys.Down:
                     downDown = false;
                     break;
+                case Keys.I:
+                    if (gameState == "running")
+                    {
+                        inventoryTLabel.Visible = false;
+                        inventoryRLabel.Visible = false;
+                    }
+                    break;
             }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             //move hero 
-            if (leftDown == true && hero.X > 0)
             {
-                hero.X -= heroSpeed;
-            }
+                if (leftDown == true && hero.X > 0)
+                {
+                    hero.X -= heroSpeed;
+                }
 
-            if (rightDown == true && hero.X < this.Width - hero.Width)
-            {
-                hero.X += heroSpeed;
-            }
+                if (rightDown == true && hero.X < this.Width - hero.Width)
+                {
+                    hero.X += heroSpeed;
+                }
 
-            if (upDown == true && hero.Y > 0)
-            {
-                hero.Y -= heroSpeed;
-            }
+                if (upDown == true && hero.Y > 0)
+                {
+                    hero.Y -= heroSpeed;
+                }
 
-            if (downDown == true && hero.Y < this.Height - hero.Height)
-            {
-                hero.Y += heroSpeed;
+                if (downDown == true && hero.Y < this.Height - hero.Height)
+                {
+                    hero.Y += heroSpeed;
+                }
             }
 
             //move enemy 
@@ -211,48 +229,66 @@ namespace Final_IslandSurvivalPt2
             }
 
             //adds axe to inventory
-            //for (int i = 0; i < inventory.Count(); i++)
             {
-                if (hero.IntersectsWith(tool))
+                if (hero.IntersectsWith(axeTool))
                 {
                     //add tool to inventory
                     axe = true;
                 }
+
+                //regenerating resources
+                if (hero.IntersectsWith(resource1) && resource01 == false)
+                {
+                    resource01 = true;
+                    inventory[5]++;
+                }
+                else if (hero.IntersectsWith(resource2) && resource02 == false)
+                {
+                    resource02 = true;
+                    inventory[6]++;
+                }
+                else if (hero.IntersectsWith(resource3) && resource03 == false)
+                {
+                    resource03 = true;
+                    inventory[4]++;
+                }
+
+                if (resource01 == true || resource02 == true || resource03 == true)
+                {
+                    rCounter++;
+                }
+
+                //if counter >= 8 seconds, set bools to false
+                if (rCounter >= 400)
+                {
+                    resource01 = false;
+                    rCounter = 0;
+                }
             }
 
-            //regenerating resources
-            if (hero.IntersectsWith(resource1) && resource01 == false)
+            //fights with enemy
+            for (int i = 0; i < enemy.Count; i++)
             {
-                resource01 = true;
-                inventory[5]++;
-            }
-            else if (hero.IntersectsWith(resource2) && resource02 == false)
-            {
-                resource02 = true;
-                inventory[6]++;
-            }
-            else if (hero.IntersectsWith(resource3) && resource03 == false)
-            {
-                resource03 = true;
-                inventory[4]++;
-            }
-
-            if (resource01 == true || resource02 == true || resource03 == true)
-            {
-                rCounter++;
-            }
-
-            //if counter >= 8 seconds, set bools to false
-            if (rCounter >= 400)
-            {
-                resource01 = false;
-                rCounter = 0;
+                if (hero.IntersectsWith(enemy[i]))
+                {
+                    gameState = "fight";
+                    this.BackColor = Color.Black;
+                    inventoryImage.Visible = false;
+                    if (enemyLives == 0)
+                    {
+                        gameState = "running";
+                    }
+                    else if (heroLives == 0)
+                    {
+                        gameState = "lose";
+                    }
+                }
             }
 
             //what you need to build boat and win
             if (hero.IntersectsWith(boat) && inventory[4] == 20)
             {
-
+                gameState = "win";
             }
 
             Refresh();
@@ -280,7 +316,7 @@ namespace Final_IslandSurvivalPt2
                 //draw first tool
                 if (axe == false)
                 {
-                    e.Graphics.DrawImage(Properties.Resources.Axe_Final, tool);
+                    e.Graphics.DrawImage(Properties.Resources.Axe_Final, axeTool);
                 }
 
                 //regenerating resource
@@ -319,7 +355,12 @@ namespace Final_IslandSurvivalPt2
                 }
 
                 //draw hero
-                e.Graphics.FillRectangle(whiteBrush, hero);
+                e.Graphics.DrawImage(Properties.Resources.Hero_Final, hero);
+            }
+            else if (gameState == "fight")
+            {
+                //draw image of enemy
+                //if box is selected, colour selected box
             }
             else if (gameState == "win")
             {
