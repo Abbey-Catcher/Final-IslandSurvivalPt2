@@ -374,17 +374,19 @@ namespace Final_IslandSurvivalPt2
                 //draw enemies
                 for (int i = 0; i < enemy.Count(); i++)
                 {
-                    if (enemySpeeds[i] == 1)
+                    if (enemySpeeds[i] == 1 || enemySpeeds[i] == -1)
                     {
                         e.Graphics.DrawImage(Properties.Resources.Slime_Final, enemy[i]);
                     }
-                    else if (enemySpeeds[i] == 2)
+                    else if (enemySpeeds[i] == 2 || enemySpeeds[i] == -2)
                     {
                         e.Graphics.DrawImage(Properties.Resources.Skeleton_Final, enemy[i]);
+
                     }
-                    else if (enemySpeeds[i] == 3)
+                    else if (enemySpeeds[i] == 3 || enemySpeeds[i] == -3)
                     {
                         e.Graphics.DrawImage(Properties.Resources.Goblin_Final, enemy[i]);
+
                     }
                 }
 

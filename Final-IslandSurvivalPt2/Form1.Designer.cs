@@ -108,7 +108,7 @@
             this.enemyLivesLabel.BackColor = System.Drawing.Color.Transparent;
             this.enemyLivesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.enemyLivesLabel.ForeColor = System.Drawing.Color.White;
-            this.enemyLivesLabel.Location = new System.Drawing.Point(13, 451);
+            this.enemyLivesLabel.Location = new System.Drawing.Point(12, 319);
             this.enemyLivesLabel.Name = "enemyLivesLabel";
             this.enemyLivesLabel.Size = new System.Drawing.Size(83, 17);
             this.enemyLivesLabel.TabIndex = 6;
@@ -121,7 +121,7 @@
             this.heroLivesLabel.BackColor = System.Drawing.Color.Transparent;
             this.heroLivesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.heroLivesLabel.ForeColor = System.Drawing.Color.White;
-            this.heroLivesLabel.Location = new System.Drawing.Point(285, 451);
+            this.heroLivesLabel.Location = new System.Drawing.Point(286, 319);
             this.heroLivesLabel.Name = "heroLivesLabel";
             this.heroLivesLabel.Size = new System.Drawing.Size(70, 17);
             this.heroLivesLabel.TabIndex = 7;
