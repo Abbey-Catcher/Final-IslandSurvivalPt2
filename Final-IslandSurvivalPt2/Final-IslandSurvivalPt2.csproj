@@ -89,5 +89,32 @@
   <ItemGroup>
     <None Include="Resources\Hero-Final.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Goblin-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Skeleton-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slime-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boat-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IronCave-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rock-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hero-Final %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

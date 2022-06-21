@@ -73,6 +73,36 @@ namespace Final_IslandSurvivalPt2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Background_Final {
+            get {
+                object obj = ResourceManager.GetObject("Background_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Boat_Final {
+            get {
+                object obj = ResourceManager.GetObject("Boat_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Goblin_Final {
+            get {
+                object obj = ResourceManager.GetObject("Goblin_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Hero_Final {
             get {
                 object obj = ResourceManager.GetObject("Hero_Final", resourceCulture);
@@ -86,6 +116,56 @@ namespace Final_IslandSurvivalPt2.Properties {
         internal static System.Drawing.Bitmap inventoryBag {
             get {
                 object obj = ResourceManager.GetObject("inventoryBag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IronCave_Final {
+            get {
+                object obj = ResourceManager.GetObject("IronCave_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rock_Final {
+            get {
+                object obj = ResourceManager.GetObject("Rock_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Skeleton_Final {
+            get {
+                object obj = ResourceManager.GetObject("Skeleton_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Slime_Final {
+            get {
+                object obj = ResourceManager.GetObject("Slime_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tree_Final {
+            get {
+                object obj = ResourceManager.GetObject("Tree_Final", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

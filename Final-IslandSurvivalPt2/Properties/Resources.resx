@@ -121,10 +121,34 @@
   <data name="Axe_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Axe-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Background_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Background-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Boat_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boat-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Goblin_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Goblin-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Hero_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Hero-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Hero-Final (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="inventoryBag" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventoryBag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IronCave_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IronCave-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rock_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rock-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Skeleton_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Skeleton-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Slime_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Slime-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tree_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tree-Final.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

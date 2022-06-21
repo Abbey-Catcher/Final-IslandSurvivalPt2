@@ -12,9 +12,11 @@ namespace Final_IslandSurvivalPt2
 {
     public partial class Form1 : Form
     {
+        //size: 480, 648
+
         Rectangle mainIsland = new Rectangle(75, 100, 300, 400);
-        Rectangle beachyIsland = new Rectangle(75, 475 , 300, 60);
-        Rectangle boat = new Rectangle(100, 515, 20, 30);
+        Rectangle beachyIsland = new Rectangle(75, 475, 300, 60);
+        Rectangle boat = new Rectangle(100, 505, 40, 40);
 
         Rectangle axeTool = new Rectangle(200, 500, 20, 20);
         Rectangle pickaxeTool = new Rectangle(200, 500, 20, 20);
@@ -39,9 +41,10 @@ namespace Final_IslandSurvivalPt2
         List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
 
         //creating enemies
+        Rectangle enemyFight = new Rectangle(50, 50, 50, 50);
         List<Rectangle> enemy = new List<Rectangle>();
         List<int> enemySpeeds = new List<int>();
-        int enemySize = 10;
+        int enemySize = 30;
         int enemyLives = 10;
 
         //creating resources
@@ -57,6 +60,8 @@ namespace Final_IslandSurvivalPt2
         bool rightDown = false;
         bool upDown = false;
         bool downDown = false;
+        bool yDown = false;
+        bool nDown = false;
 
         //brushes
         SolidBrush greenBrush = new SolidBrush(Color.Green);
@@ -65,14 +70,19 @@ namespace Final_IslandSurvivalPt2
         SolidBrush brownBrush = new SolidBrush(Color.Brown);
         SolidBrush resourceReload = new SolidBrush(Color.DarkGoldenrod);
         SolidBrush resource = new SolidBrush(Color.Goldenrod);
+        SolidBrush lightBlueBrush = new SolidBrush(Color.LightBlue);
+        SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
+        SolidBrush blackBrush = new SolidBrush(Color.Black);
+        Font fightFont = new Font("Rockwell", 12);
 
         Random randGen = new Random();
 
-
-
         int counter = 0;
         int rCounter = 0;
+        int playerDamageAmount = 0;
+        int enemyDamageAmount = 0;
         string gameState = "waiting";
+        string mode = "attack";
 
         public Form1()
         {
@@ -107,6 +117,12 @@ namespace Final_IslandSurvivalPt2
                     break;
                 case Keys.Down:
                     downDown = true;
+                    break;
+                case Keys.Y:
+                    yDown = true;
+                    break;
+                case Keys.N:
+                    nDown = true;
                     break;
                 case Keys.Space:
                     if (gameState == "waiting" || gameState == "over")
@@ -154,6 +170,12 @@ namespace Final_IslandSurvivalPt2
                     break;
                 case Keys.Down:
                     downDown = false;
+                    break;
+                case Keys.Y:
+                    yDown = false;
+                    break;
+                case Keys.N:
+                    nDown = false;
                     break;
                 case Keys.I:
                     if (gameState == "running")
@@ -207,6 +229,7 @@ namespace Final_IslandSurvivalPt2
                 //starts more in on island
                 enemy.Add(new Rectangle(200, mainIsland.Y + 40, 10, 15));
                 enemySpeeds.Add(randGen.Next(1, 4));
+                
                 counter = 0;
             }
 
@@ -311,7 +334,7 @@ namespace Final_IslandSurvivalPt2
                 e.Graphics.FillRectangle(goldBrush, beachyIsland);
 
                 //draw boat
-                e.Graphics.FillRectangle(brownBrush, boat);
+                e.Graphics.DrawImage(Properties.Resources.Boat_Final, boat);
 
                 //draw first tool
                 if (axe == false)
@@ -351,7 +374,18 @@ namespace Final_IslandSurvivalPt2
                 //draw enemies
                 for (int i = 0; i < enemy.Count(); i++)
                 {
-                    e.Graphics.FillRectangle(goldBrush, enemy[i]);
+                    if (enemySpeeds[i] == 1)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Slime_Final, enemy[i]);
+                    }
+                    else if (enemySpeeds[i] == 2)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Skeleton_Final, enemy[i]);
+                    }
+                    else if (enemySpeeds[i] == 3)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Goblin_Final, enemy[i]);
+                    }
                 }
 
                 //draw hero
@@ -359,8 +393,31 @@ namespace Final_IslandSurvivalPt2
             }
             else if (gameState == "fight")
             {
+                enemyLivesLabel.Visible = true;
+                heroLivesLabel.Visible = true;
+                enemyLivesLabel.Text = "";
+                heroLivesLabel.Text = "";
+
                 //draw image of enemy
                 //if box is selected, colour selected box
+                for (int i = 0; i < enemy.Count(); i++)
+                {
+                    if (enemySpeeds[i] == 1)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Slime_Final, enemyFight);
+                    }
+                    else if (enemySpeeds[i] == 2)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Skeleton_Final, enemyFight);
+                    }
+                    else if (enemySpeeds[i] == 3)
+                    {
+                        e.Graphics.DrawImage(Properties.Resources.Goblin_Final, enemyFight);
+                    }
+                }
+
+                FightMenu();
+                FightMoves();
             }
             else if (gameState == "win")
             {
@@ -372,6 +429,72 @@ namespace Final_IslandSurvivalPt2
                 titleLabel.Text = "Oh no! \nYou died!";
                 subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
             }
+
+
+            void FightMenu()
+            {
+                switch (mode)
+                {
+                    case "attack":
+                        e.Graphics.FillRectangle(lightBlueBrush, 30, 415, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 260, 415, 200, 30);
+
+                        e.Graphics.DrawString("Attack", fightFont, blackBrush, 103, 420);
+                        e.Graphics.DrawString("Run", fightFont, blackBrush, 340, 420);
+                        break;
+                    case "run":
+                        e.Graphics.FillRectangle(lightBlueBrush, 260, 415, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 30, 415, 200, 30);
+                        
+
+                        e.Graphics.DrawString("Attack", fightFont, blackBrush, 103, 420);
+                        e.Graphics.DrawString("Run", fightFont, blackBrush, 340, 420);
+                        break;
+                }
+            }
         }
+
+        void FightMoves()
+        {
+            switch (mode)
+            {
+                case "attack":
+                    if (rightDown == true)
+                    {
+                        mode = "run";
+                    }
+                    else if (yDown == true)
+                    {
+                        playerDamageAmount = randGen.Next(1, 7);
+                        //enemy health goes down
+                        enemyLives = enemyLives - playerDamageAmount;
+                        enemyLivesLabel.Text = $"{enemyLives}";
+
+                        //enemy attack/player health goes down
+                        enemyDamageAmount = randGen.Next(1, 7);
+                        heroLives = heroLives - enemyDamageAmount;
+                        heroLivesLabel.Text = $"{heroLives}";
+
+                        //skillMenu2Yes
+                        yDown = false;
+                    }
+                    break;
+                case "run":
+                    if (leftDown == true)
+                    {
+                        mode = "attack";
+                    }
+                    if (yDown == true)
+                    {
+                        gameState = "running";
+                        enemyLivesLabel.Visible = false;
+                        heroLivesLabel.Visible = false;
+                        yDown = false;
+                    }
+                    break;
+            }
+        }
+
+        
     }
 }

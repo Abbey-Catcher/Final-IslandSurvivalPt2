@@ -35,6 +35,8 @@
             this.inventoryTLabel = new System.Windows.Forms.Label();
             this.inventoryImage = new System.Windows.Forms.PictureBox();
             this.inventoryRLabel = new System.Windows.Forms.Label();
+            this.enemyLivesLabel = new System.Windows.Forms.Label();
+            this.heroLivesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,12 +102,40 @@
             this.inventoryRLabel.Text = "inventory label";
             this.inventoryRLabel.Visible = false;
             // 
+            // enemyLivesLabel
+            // 
+            this.enemyLivesLabel.AutoSize = true;
+            this.enemyLivesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.enemyLivesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.enemyLivesLabel.ForeColor = System.Drawing.Color.White;
+            this.enemyLivesLabel.Location = new System.Drawing.Point(13, 451);
+            this.enemyLivesLabel.Name = "enemyLivesLabel";
+            this.enemyLivesLabel.Size = new System.Drawing.Size(83, 17);
+            this.enemyLivesLabel.TabIndex = 6;
+            this.enemyLivesLabel.Text = "enemyLives";
+            this.enemyLivesLabel.Visible = false;
+            // 
+            // heroLivesLabel
+            // 
+            this.heroLivesLabel.AutoSize = true;
+            this.heroLivesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.heroLivesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.heroLivesLabel.ForeColor = System.Drawing.Color.White;
+            this.heroLivesLabel.Location = new System.Drawing.Point(285, 451);
+            this.heroLivesLabel.Name = "heroLivesLabel";
+            this.heroLivesLabel.Size = new System.Drawing.Size(70, 17);
+            this.heroLivesLabel.TabIndex = 7;
+            this.heroLivesLabel.Text = "heroLives";
+            this.heroLivesLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(480, 648);
+            this.Controls.Add(this.heroLivesLabel);
+            this.Controls.Add(this.enemyLivesLabel);
             this.Controls.Add(this.inventoryRLabel);
             this.Controls.Add(this.inventoryImage);
             this.Controls.Add(this.inventoryTLabel);
@@ -120,6 +150,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.inventoryImage)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,6 +162,8 @@
         private System.Windows.Forms.Label inventoryTLabel;
         private System.Windows.Forms.PictureBox inventoryImage;
         private System.Windows.Forms.Label inventoryRLabel;
+        private System.Windows.Forms.Label enemyLivesLabel;
+        private System.Windows.Forms.Label heroLivesLabel;
     }
 }
 
