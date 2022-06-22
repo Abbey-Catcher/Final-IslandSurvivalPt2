@@ -63,6 +63,16 @@ namespace Final_IslandSurvivalPt2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap anvil_Final {
+            get {
+                object obj = ResourceManager.GetObject("anvil_Final", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Axe_Final {
             get {
                 object obj = ResourceManager.GetObject("Axe_Final", resourceCulture);

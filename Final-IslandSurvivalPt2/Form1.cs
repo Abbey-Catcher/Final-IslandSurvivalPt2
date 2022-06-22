@@ -14,10 +14,11 @@ namespace Final_IslandSurvivalPt2
     {
         //size: 480, 648
 
-        Rectangle mainIsland = new Rectangle(75, 100, 300, 400);
-        Rectangle beachyIsland = new Rectangle(75, 475, 300, 60);
+        //Rectangle mainIsland = new Rectangle(75, 100, 300, 400);
+        //Rectangle beachyIsland = new Rectangle(75, 475, 300, 60);
         Rectangle boat = new Rectangle(100, 505, 40, 40);
 
+        Rectangle anvil = new Rectangle(250, 495, 20, 20);
         Rectangle axeTool = new Rectangle(200, 500, 20, 20);
         Rectangle pickaxeTool = new Rectangle(200, 500, 20, 20);
         Rectangle swordTool = new Rectangle(200, 500, 20, 20);
@@ -32,9 +33,10 @@ namespace Final_IslandSurvivalPt2
         bool pickaxe = false;
         bool sword = false;
         bool hammer = false;
-        //int wood = 0;
-        //int stone = 0;
-        //int iron = 0;
+
+        bool Axe2 = false;
+        bool Pickaxe2 = false;
+        bool Sword2 = false;
 
 
         //inventory system
@@ -125,13 +127,13 @@ namespace Final_IslandSurvivalPt2
                     nDown = true;
                     break;
                 case Keys.Space:
-                    if (gameState == "waiting" || gameState == "over")
+                    if (gameState == "waiting" || gameState == "lose" || gameState == "win")
                     {
                         GameInitialize();
                     }
                     break;
                 case Keys.Escape:
-                    if (gameState == "waiting" || gameState == "over")
+                    if (gameState == "waiting" || gameState == "lose" || gameState == "win")
                     {
                         Application.Exit();
                     }
@@ -190,23 +192,24 @@ namespace Final_IslandSurvivalPt2
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             //move hero 
+            hero.Location = new Point(325, 475);
             {
-                if (leftDown == true && hero.X > 0)
+                if (leftDown == true && hero.X > 150)
                 {
                     hero.X -= heroSpeed;
                 }
 
-                if (rightDown == true && hero.X < this.Width - hero.Width)
+                if (rightDown == true && hero.X < this.Width - 75)
                 {
                     hero.X += heroSpeed;
                 }
 
-                if (upDown == true && hero.Y > 0)
+                if (upDown == true && hero.Y > 100)
                 {
                     hero.Y -= heroSpeed;
                 }
 
-                if (downDown == true && hero.Y < this.Height - hero.Height)
+                if (downDown == true && hero.Y < this.Height - 75)
                 {
                     hero.Y += heroSpeed;
                 }
@@ -222,41 +225,27 @@ namespace Final_IslandSurvivalPt2
                 enemy[i] = new Rectangle(enemy[i].X, y, enemySize, enemySize);
             }
 
-            //add new enemy
-            counter++;
-            if (enemy.Count <= 1 && counter > 100)
+            if (gameState == "running")
             {
-                //starts more in on island
-                enemy.Add(new Rectangle(200, mainIsland.Y + 40, 10, 15));
-                enemySpeeds.Add(randGen.Next(1, 4));
-                
-                counter = 0;
-            }
+                this.BackgroundImage = Properties.Resources.Background_Final;
+                this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            //removes when off screen
-            //
-            //edit code so enemy goes back to base and then gets removed
-            for (int i = 0; i < enemy.Count(); i++)
-            {
-                if (enemy[i].Y > beachyIsland.Y - enemy[i].Height)
-                {
-                    //turn around
-                    enemySpeeds[i] = enemySpeeds[i] * -1;
-                }
-                else if (enemy[i].Y < mainIsland.Y + 20)
-                {
-                    enemy.RemoveAt(i);
-                    enemySpeeds.RemoveAt(i);
-                    counter = 0;
-                }
-            }
+                titleLabel.Text = "";
+                subtitleLabel.Text = "";
+                enemyLivesLabel.Text = "";
+                heroLivesLabel.Text = "";
 
-            //adds axe to inventory
-            {
+                //adds axe to inventory
                 if (hero.IntersectsWith(axeTool))
                 {
                     //add tool to inventory
                     axe = true;
+                }
+
+                //accessing anvil
+                if (hero.IntersectsWith(anvil))
+                {
+                    gameState = "anvil";
                 }
 
                 //regenerating resources
@@ -282,34 +271,108 @@ namespace Final_IslandSurvivalPt2
                 }
 
                 //if counter >= 8 seconds, set bools to false
-                if (rCounter >= 400)
+                if (rCounter >= 400 && resource01 == true)
                 {
                     resource01 = false;
                     rCounter = 0;
                 }
-            }
-
-            //fights with enemy
-            for (int i = 0; i < enemy.Count; i++)
-            {
-                if (hero.IntersectsWith(enemy[i]))
+                else if (rCounter >= 400 && resource02 == true)
                 {
-                    gameState = "fight";
-                    this.BackColor = Color.Black;
-                    inventoryImage.Visible = false;
-                    if (enemyLives == 0)
+                    resource02 = false;
+                    rCounter = 0;
+                }
+                else if (rCounter >= 400 && resource03 == true)
+                {
+                    resource03 = false;
+                    rCounter = 0;
+                }
+
+                //add new enemy
+                counter++;
+                if (enemy.Count <= 1 && counter > 100)
+                {
+                    //starts more in on island
+                    enemy.Add(new Rectangle(200, 150, 10, 15));
+                    enemySpeeds.Add(randGen.Next(1, 4));
+
+                    counter = 0;
+                }
+
+                //removes when off screen
+                //
+                //edit code so enemy goes back to base and then gets removed
+                for (int i = 0; i < enemy.Count(); i++)
+                {
+                    if (enemy[i].Y > 425)
                     {
-                        gameState = "running";
+                        //turn around
+                        enemySpeeds[i] = enemySpeeds[i] * -1;
                     }
-                    else if (heroLives == 0)
+                    else if (enemy[i].Y < 125)
                     {
-                        gameState = "lose";
+                        enemy.RemoveAt(i);
+                        enemySpeeds.RemoveAt(i);
+                        counter = 0;
+                    }
+                }
+
+                //fights with enemy
+                for (int i = 0; i < enemy.Count; i++)
+                {
+                    if (hero.IntersectsWith(enemy[i]))
+                    {
+                        gameState = "fight";
+                        this.BackColor = Color.Black;
+                        inventoryImage.Visible = false;
                     }
                 }
             }
+            else if (gameState == "fight")
+            {
+                enemyLivesLabel.Visible = true;
+                heroLivesLabel.Visible = true;
+
+                if (enemyLives <= 0)
+                {
+                    gameState = "running";
+                }
+                else if (heroLives <= 0)
+                {
+                    gameState = "lose";
+                }
+            }
+            else if (gameState == "anvil")
+            {
+                this.BackColor = Color.Green;
+                anvilUpgrade();
+
+                if (nDown == true)
+                {
+                    gameState = "running";
+                    nDown = false;
+                }
+            }
+            else if (gameState == "win")
+            {
+                this.BackColor = Color.Green;
+                titleLabel.Text = "Yay! \nYou repaired the boat and got off the island!";
+                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
+            }
+            else if (gameState == "lose")
+            {
+                this.BackColor = Color.Red;
+
+                enemyLivesLabel.Visible = false;
+                heroLivesLabel.Visible = false;
+
+                titleLabel.Text = "Oh no! \nYou died!";
+                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
+            }
+
+            
 
             //what you need to build boat and win
-            if (hero.IntersectsWith(boat) && inventory[4] == 20)
+            if (hero.IntersectsWith(boat) && inventory[4] == 20 && inventory[5] == 15 && inventory[6] == 10)
             {
                 gameState = "win";
             }
@@ -327,14 +390,18 @@ namespace Final_IslandSurvivalPt2
             else if (gameState == "running")
             {
                 //change back colour
-                this.BackColor = Color.MediumTurquoise;
+                //this.BackColor = Color.MediumTurquoise;
 
                 //draw island
-                e.Graphics.FillRectangle(greenBrush, mainIsland);
-                e.Graphics.FillRectangle(goldBrush, beachyIsland);
+                //e.Graphics.FillRectangle(greenBrush, mainIsland);
+                //e.Graphics.FillRectangle(goldBrush, beachyIsland);
+                
 
                 //draw boat
                 e.Graphics.DrawImage(Properties.Resources.Boat_Final, boat);
+
+                //draw anvil
+                e.Graphics.DrawImage(Properties.Resources.anvil_Final, anvil);
 
                 //draw first tool
                 if (axe == false)
@@ -395,11 +462,6 @@ namespace Final_IslandSurvivalPt2
             }
             else if (gameState == "fight")
             {
-                enemyLivesLabel.Visible = true;
-                heroLivesLabel.Visible = true;
-                enemyLivesLabel.Text = "";
-                heroLivesLabel.Text = "";
-
                 //draw image of enemy
                 //if box is selected, colour selected box
                 for (int i = 0; i < enemy.Count(); i++)
@@ -421,17 +483,45 @@ namespace Final_IslandSurvivalPt2
                 FightMenu();
                 FightMoves();
             }
-            else if (gameState == "win")
+            else if (gameState == "anvil")
             {
-                titleLabel.Text = "Yay! \nYou repaired the boat and got off the island!";
-                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
-            }
-            else if (gameState == "lose")
-            {
-                titleLabel.Text = "Oh no! \nYou died!";
-                subtitleLabel.Text = "Press Space Bar to Start Again\nPress Esc to Exit";
+                anvilUpgrade();
+                anvilUpgradeMenu();
             }
 
+            void anvilUpgradeMenu()
+            {
+                switch (mode)
+                {
+                    case "Axe":
+                        e.Graphics.FillRectangle(lightBlueBrush, 175, 275, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 300, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 325, 200, 30);
+
+                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
+                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
+                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
+                        break;
+                    case "Pickaxe":
+                        e.Graphics.FillRectangle(lightBlueBrush, 175, 300, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 275, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 325, 200, 30);
+
+                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
+                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
+                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
+                        break;
+                    case "Sword":
+                        e.Graphics.FillRectangle(lightBlueBrush, 175, 325, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 300, 200, 30);
+                        e.Graphics.FillRectangle(blueBrush, 175, 275, 200, 30);
+
+                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
+                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
+                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
+                        break;
+                }
+            }
 
             void FightMenu()
             {
@@ -497,6 +587,84 @@ namespace Final_IslandSurvivalPt2
             }
         }
 
-        
+        void anvilUpgrade()
+        {
+            switch (mode)
+            {
+                case "Axe":
+                    if (downDown == true)
+                    {
+                        mode = "Pickaxe";
+                    }
+                    else if (yDown == true)
+                    {
+                        if (inventory[4] == 5)
+                        {
+                            Axe2 = true;
+                        }
+                        else
+                        {
+                            Axe2 = false;
+                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+                        }
+                        yDown = false;
+                    }
+                    else if (nDown == true)
+                    {
+                        gameState = "running";
+                    }
+                    break;
+                case "Pickaxe":
+                    if (downDown == true)
+                    {
+                        mode = "Sword";
+                    }
+                    else if (upDown == true)
+                    {
+                        mode = "Axe";
+                    }
+                    else if (yDown == true)
+                    {
+                        if (inventory[4] == 10 && inventory[5] == 5)
+                        {
+                            Pickaxe2 = true;
+                        }
+                        else
+                        {
+                            Pickaxe2 = false;
+                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+                        }
+                        yDown = false;
+                    }
+                    else if (nDown == true)
+                    {
+                        gameState = "running";
+                    }
+                    break;
+                case "Sword":
+                    if (upDown == true)
+                    {
+                        mode = "Pickaxe";
+                    }
+                    else if (yDown == true)
+                    {
+                        if (inventory[4] == 12 && inventory[5] == 7 && inventory[6] == 2)
+                        {
+                            Sword2 = true;
+                        }
+                        else
+                        {
+                            Sword2 = false;
+                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+                        }
+                        yDown = false;
+                    }
+                    else if (nDown == true)
+                    {
+                        gameState = "running";
+                    }
+                    break;
+            }
+        }
     }
 }

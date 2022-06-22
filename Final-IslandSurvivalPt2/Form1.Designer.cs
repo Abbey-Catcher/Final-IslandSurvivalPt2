@@ -74,7 +74,7 @@
             this.inventoryTLabel.ForeColor = System.Drawing.Color.Black;
             this.inventoryTLabel.Location = new System.Drawing.Point(56, 580);
             this.inventoryTLabel.Name = "inventoryTLabel";
-            this.inventoryTLabel.Size = new System.Drawing.Size(195, 46);
+            this.inventoryTLabel.Size = new System.Drawing.Size(195, 50);
             this.inventoryTLabel.TabIndex = 3;
             this.inventoryTLabel.Text = "inventory label";
             this.inventoryTLabel.Visible = false;
@@ -97,7 +97,7 @@
             this.inventoryRLabel.ForeColor = System.Drawing.Color.Black;
             this.inventoryRLabel.Location = new System.Drawing.Point(273, 580);
             this.inventoryRLabel.Name = "inventoryRLabel";
-            this.inventoryRLabel.Size = new System.Drawing.Size(195, 46);
+            this.inventoryRLabel.Size = new System.Drawing.Size(195, 50);
             this.inventoryRLabel.TabIndex = 5;
             this.inventoryRLabel.Text = "inventory label";
             this.inventoryRLabel.Visible = false;
@@ -110,9 +110,8 @@
             this.enemyLivesLabel.ForeColor = System.Drawing.Color.White;
             this.enemyLivesLabel.Location = new System.Drawing.Point(12, 319);
             this.enemyLivesLabel.Name = "enemyLivesLabel";
-            this.enemyLivesLabel.Size = new System.Drawing.Size(83, 17);
+            this.enemyLivesLabel.Size = new System.Drawing.Size(0, 17);
             this.enemyLivesLabel.TabIndex = 6;
-            this.enemyLivesLabel.Text = "enemyLives";
             this.enemyLivesLabel.Visible = false;
             // 
             // heroLivesLabel
@@ -123,9 +122,8 @@
             this.heroLivesLabel.ForeColor = System.Drawing.Color.White;
             this.heroLivesLabel.Location = new System.Drawing.Point(286, 319);
             this.heroLivesLabel.Name = "heroLivesLabel";
-            this.heroLivesLabel.Size = new System.Drawing.Size(70, 17);
+            this.heroLivesLabel.Size = new System.Drawing.Size(0, 17);
             this.heroLivesLabel.TabIndex = 7;
-            this.heroLivesLabel.Text = "heroLives";
             this.heroLivesLabel.Visible = false;
             // 
             // Form1

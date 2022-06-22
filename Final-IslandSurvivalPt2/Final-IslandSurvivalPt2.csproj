@@ -116,5 +116,14 @@
   <ItemGroup>
     <None Include="Resources\Hero-Final %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anvil-Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background-Final-_1_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background-Final-_2_.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
