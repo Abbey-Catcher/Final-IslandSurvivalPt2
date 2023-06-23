@@ -32,6 +32,9 @@ namespace Final_IslandSurvivalPt2
         bool sword = false;
         bool hammer = false;
 
+        string mode = "attack";
+        Random randGen = new Random();
+
         public GameScreen()
         {
             InitializeComponent();
@@ -99,17 +102,9 @@ namespace Final_IslandSurvivalPt2
             {
                 nDown = true;
             }
-            if (e.KeyCode == Keys.Space)
-            {
-
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                Application.Exit();
-            }
             if (e.KeyCode == Keys.I)
             {
-
+                Form1.ChangeScreen(this, new InventoryScreen());
             }
 
                 //case Keys.Space:
@@ -139,16 +134,57 @@ namespace Final_IslandSurvivalPt2
         public void gameTimer_Tick(object sender, EventArgs e)
         {
             //collision
-            foreach (Enemies e in enemy)
+            foreach (Enemies b in enemy)
             {
-                if (e.Collision(hero))
+                if (b.Collision(hero))
                 {
-                    FightScreen fs = new FightScreen();
-                    this.Controls.Add(fs);
+                    gameTimer.Enabled = false;
+                    Form1.ChangeScreen(this, new FightScreen());
                 }
             }
             
         }
-    }
+
+        private void GameScreen_Paint(object sender, PaintEventArgs e)
+        {
+            //draw each enemy based on speed
+            foreach (Enemies b in enemy)
+            {
+                b.ySpeed = randGen.Next(1, 4);
+
+                if (b.ySpeed == 1)
+                {
+                    e.Graphics.DrawImage(Properties.Resources.Slime_Final, enemyFight);
+                }
+                else if (b.ySpeed == 2)
+                {
+                    e.Graphics.DrawImage(Properties.Resources.Skeleton_Final, enemyFight);
+                }
+                else if (b.ySpeed == 3)
+                {
+                    e.Graphics.DrawImage(Properties.Resources.Goblin_Final, enemyFight);
+                }
+            }
+
+        }
+
+        //void FightMoves()
+        //{
+        //    switch (mode)
+        //    {
+        //        case "attack":
+        //            if (rightDown == true)
+        //            {
+        //                mode = "run";
+        //            }
+        //break;
+        //case "run":
+        //    if (leftDown == true)
+        //    {
+        //        mode = "attack";
+        //    }
+        //    break;
+        //}
+        //}
     }
 }

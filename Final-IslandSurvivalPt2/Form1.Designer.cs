@@ -46,7 +46,7 @@
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(376, 151);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "title label";
+            this.titleLabel.Text = "Final Island Survival";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // subtitleLabel

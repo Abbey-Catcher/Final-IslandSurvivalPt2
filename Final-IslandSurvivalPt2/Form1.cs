@@ -58,17 +58,10 @@ namespace Final_IslandSurvivalPt2
         SolidBrush lightBlueBrush = new SolidBrush(Color.LightBlue);
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
-        Font fightFont = new Font("Rockwell", 12);
-
-        Random randGen = new Random();
 
         int counter = 0;
         int rCounter = 0;
-        int playerDamageAmount = 0;
-        int enemyDamageAmount = 0;
-        string gameState = "waiting";
-        string mode = "attack";
-        string anvilMode = "Axe";
+        
 
         public Form1()
         {
@@ -350,27 +343,6 @@ namespace Final_IslandSurvivalPt2
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            if (gameState == "waiting")
-            {
-                titleLabel.Text = "IslandSurvival";
-                subtitleLabel.Text = "Press Space Bar to Start or Esc to Exit";
-            }
-            else if (gameState == "running")
-            {
-                //change back colour
-                //this.BackColor = Color.MediumTurquoise;
-
-                //draw island
-                //e.Graphics.FillRectangle(greenBrush, mainIsland);
-                //e.Graphics.FillRectangle(goldBrush, beachyIsland);
-
-
-                //draw boat
-                e.Graphics.DrawImage(Properties.Resources.Boat_Final, boat);
-
-                //draw anvil
-                e.Graphics.DrawImage(Properties.Resources.anvil_Final, anvil);
-
                 //draw first tool
                 if (axe == false)
                 {
@@ -428,295 +400,170 @@ namespace Final_IslandSurvivalPt2
                 //draw hero
                 e.Graphics.DrawImage(Properties.Resources.Hero_Final, hero);
             }
-            else if (gameState == "fight")
-            {
-                this.BackgroundImage = null;
-                //draw image of enemy
-                //if box is selected, colour selected box
-                for (int i = 0; i < enemy.Count(); i++)
-                {
-                    if (enemySpeeds[i] == 1)
-                    {
-                        e.Graphics.DrawImage(Properties.Resources.Slime_Final, enemyFight);
-                    }
-                    else if (enemySpeeds[i] == 2)
-                    {
-                        e.Graphics.DrawImage(Properties.Resources.Skeleton_Final, enemyFight);
-                    }
-                    else if (enemySpeeds[i] == 3)
-                    {
-                        e.Graphics.DrawImage(Properties.Resources.Goblin_Final, enemyFight);
-                    }
-                }
+            
 
-                FightMenu();
-                FightMoves();
-            }
-            else if (gameState == "anvil")
-            {
-                this.BackColor = Color.Green;
-                anvilUpgradeMenu();
-            }
-
-            void anvilUpgradeMenu()
-            {
-                switch (anvilMode)
-                {
-                    case "Axe":
-                        e.Graphics.FillRectangle(lightBlueBrush, 175, 275, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 300, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 325, 200, 30);
-
-                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
-                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
-                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
-                        break;
-                    case "Pickaxe":
-                        e.Graphics.FillRectangle(lightBlueBrush, 175, 300, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 275, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 325, 200, 30);
-
-                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
-                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
-                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
-                        break;
-                    case "Sword":
-                        e.Graphics.FillRectangle(lightBlueBrush, 175, 325, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 300, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 175, 275, 200, 30);
-
-                        e.Graphics.DrawString("Axe", fightFont, blackBrush, 200, 300);
-                        e.Graphics.DrawString("Pickaxe", fightFont, blackBrush, 200, 325);
-                        e.Graphics.DrawString("Sword", fightFont, blackBrush, 200, 350);
-                        break;
-                }
-            }
-
-            void FightMenu()
-            {
-                switch (mode)
-                {
-                    case "attack":
-                        e.Graphics.FillRectangle(lightBlueBrush, 30, 415, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 260, 415, 200, 30);
-
-                        e.Graphics.DrawString("Attack", fightFont, blackBrush, 103, 420);
-                        e.Graphics.DrawString("Run", fightFont, blackBrush, 340, 420);
-                        break;
-                    case "run":
-                        e.Graphics.FillRectangle(lightBlueBrush, 260, 415, 200, 30);
-                        e.Graphics.FillRectangle(blueBrush, 30, 415, 200, 30);
-
-
-                        e.Graphics.DrawString("Attack", fightFont, blackBrush, 103, 420);
-                        e.Graphics.DrawString("Run", fightFont, blackBrush, 340, 420);
-                        break;
-                }
-            }
-        }
-
-        void FightMoves()
-        {
-            switch (mode)
-            {
-                case "attack":
-                    if (rightDown == true)
-                    {
-                        mode = "run";
-                    }
-                    else if (yDown == true)
-                    {
-                        playerDamageAmount = randGen.Next(1, 8);
-                        //enemy health goes down
-                        enemyLives = enemyLives - playerDamageAmount;
-                        enemyLivesLabel.Text = $"Enemy Health: {enemyLives}.\n You dealt {playerDamageAmount} damage.";
-
-                        //enemy attack/player health goes down
-                        enemyDamageAmount = randGen.Next(1, 6);
-                        heroLives = heroLives - enemyDamageAmount;
-                        heroLivesLabel.Text = $"Hero Health: {heroLives}.\n Enemy dealt {enemyDamageAmount} damage.";
-
-                        //skillMenu2Yes
-                        yDown = false;
-                    }
-                    break;
-                case "run":
-                    if (leftDown == true)
-                    {
-                        mode = "attack";
-                    }
-                    if (yDown == true)
-                    {
-                        gameState = "running";
-                        enemyLivesLabel.Visible = false;
-                        heroLivesLabel.Visible = false;
-                        yDown = false;
-                    }
-                    break;
-            }
-        }
-
-        void anvilUpgrade()
-        {
-            switch (anvilMode)
-            {
-                case "Axe":
-                    if (downDown == true)
-                    {
-                        anvilMode = "Pickaxe";
-                        downDown = false;
-                    }
-                    else if (downDown == true && pickaxe == true)
-                    {
-                        anvilMode = "Pickaxe1";
-                        downDown = false;
-                    }
-                    else if (yDown == true)
-                    {
-                        if (inventory[4] == 5)
-                        {
-                            Axe2 = true;
-                        }
-                        else
-                        {
-                            Axe2 = false;
-                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
-                        }
-                        yDown = false;
-                    }
-                    else if (nDown == true)
-                    {
-                        gameState = "running";
-                    }
-                    break;
-                case "Pickaxe":
-                    if (downDown == true)
-                    {
-                        anvilMode = "Sword";
-                        downDown = false;
-                    }
-                    else if (downDown == true && sword == true)
-                    {
-                        anvilMode = "Sword1";
-                        downDown = false;
-                    }
-                    else if (upDown == true)
-                    {
-                        anvilMode = "Axe";
-                        upDown = false;
-                    }
-                    else if (yDown == true)
-                    {
-                        if (inventory[4] == 8 && inventory[5] == 3)
-                        {
-                            pickaxe = true;
-                        }
-                        else
-                        {
-                            Pickaxe2 = false;
-                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
-                        }
-                        yDown = false;
-                    }
-                    else if (nDown == true)
-                    {
-                        gameState = "running";
-                    }
-                    break;
-                case "Sword":
-                    if (upDown == true)
-                    {
-                        anvilMode = "Pickaxe";
-                        upDown = false;
-                    }
-                    else if (upDown == true && pickaxe == true)
-                    {
-                        anvilMode = "Pickaxe1";
-                        upDown = false;
-                    }
-                    else if (yDown == true)
-                    {
-                        if (inventory[4] == 12 && inventory[5] == 7 && inventory[6] == 2)
-                        {
-                            Sword2 = true;
-                        }
-                        else
-                        {
-                            Sword2 = false;
-                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
-                        }
-                        yDown = false;
-                    }
-                    else if (nDown == true)
-                    {
-                        gameState = "running";
-                    }
-                    break;
-                case "Pickaxe1":
-                    if (downDown == true)
-                    {
-                        anvilMode = "Sword";
-                        downDown = false;
-                    }
-                    else if (downDown == true && sword == true)
-                    {
-                        anvilMode = "Sword1";
-                        downDown = false;
-                    }
-                    else if (upDown == true)
-                    {
-                        anvilMode = "Axe";
-                        upDown = false;
-                    }
-                    else if (yDown == true && pickaxe == true)
-                    {
-                        if (inventory[4] == 10 && inventory[5] == 5)
-                        {
-                            Pickaxe2 = true;
-                        }
-                        else
-                        {
-                            Pickaxe2 = false;
-                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
-                        }
-                        yDown = false;
-                    }
-                    else if (nDown == true)
-                    {
-                        gameState = "running";
-                    }
-                    break;
-                case "Sword1":
-                    if (upDown == true)
-                    {
-                        anvilMode = "Pickaxe";
-                        upDown = false;
-                    }
-                    else if (upDown == true && pickaxe == true)
-                    {
-                        anvilMode = "Pickaxe1";
-                        upDown = false;
-                    }
-                    else if (yDown == true && sword == true)
-                    {
-                        if (inventory[4] == 12 && inventory[5] == 7 && inventory[6] == 2)
-                        {
-                            Sword2 = true;
-                        }
-                        else
-                        {
-                            Sword2 = false;
-                            subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
-                        }
-                        yDown = false;
-                    }
-                    else if (nDown == true)
-                    {
-                        gameState = "running";
-                    }
-                    break;
-            }
-        }
+        //void anvilUpgrade()
+        //{
+        //    switch (anvilMode)
+        //    {
+        //        //upgrade axe
+        //        case "Axe":
+        //            if (downDown == true)
+        //            {
+        //                anvilMode = "Pickaxe";
+        //                downDown = false;
+        //            }
+        //            else if (downDown == true && pickaxe == true)
+        //            {
+        //                anvilMode = "Pickaxe1";
+        //                downDown = false;
+        //            }
+        //            else if (yDown == true)
+        //            {
+        //                if (inventory[4] == 5)
+        //                {
+        //                    Axe2 = true;
+        //                }
+        //                else
+        //                {
+        //                    Axe2 = false;
+        //                    subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+        //                }
+        //                yDown = false;
+        //            }
+        //            else if (nDown == true)
+        //            {
+        //                gameState = "running";
+        //            }
+        //            break;
+        //        case "Pickaxe":
+        //            if (downDown == true)
+        //            {
+        //                anvilMode = "Sword";
+        //                downDown = false;
+        //            }
+        //            else if (downDown == true && sword == true)
+        //            {
+        //                anvilMode = "Sword1";
+        //                downDown = false;
+        //            }
+        //            else if (upDown == true)
+        //            {
+        //                anvilMode = "Axe";
+        //                upDown = false;
+        //            }
+        //            else if (yDown == true)
+        //            {
+        //                if (inventory[4] == 8 && inventory[5] == 3)
+        //                {
+        //                    pickaxe = true;
+        //                }
+        //                else
+        //                {
+        //                    Pickaxe2 = false;
+        //                    subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+        //                }
+        //                yDown = false;
+        //            }
+        //            else if (nDown == true)
+        //            {
+        //                gameState = "running";
+        //            }
+        //            break;
+        //        case "Sword":
+        //            if (upDown == true)
+        //            {
+        //                anvilMode = "Pickaxe";
+        //                upDown = false;
+        //            }
+        //            else if (upDown == true && pickaxe == true)
+        //            {
+        //                anvilMode = "Pickaxe1";
+        //                upDown = false;
+        //            }
+        //            else if (yDown == true)
+        //            {
+        //                if (inventory[4] == 12 && inventory[5] == 7 && inventory[6] == 2)
+        //                {
+        //                    Sword2 = true;
+        //                }
+        //                else
+        //                {
+        //                    Sword2 = false;
+        //                    subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+        //                }
+        //                yDown = false;
+        //            }
+        //            else if (nDown == true)
+        //            {
+        //                gameState = "running";
+        //            }
+        //            break;
+        //        case "Pickaxe1":
+        //            if (downDown == true)
+        //            {
+        //                anvilMode = "Sword";
+        //                downDown = false;
+        //            }
+        //            else if (downDown == true && sword == true)
+        //            {
+        //                anvilMode = "Sword1";
+        //                downDown = false;
+        //            }
+        //            else if (upDown == true)
+        //            {
+        //                anvilMode = "Axe";
+        //                upDown = false;
+        //            }
+        //            else if (yDown == true && pickaxe == true)
+        //            {
+        //                if (inventory[4] == 10 && inventory[5] == 5)
+        //                {
+        //                    Pickaxe2 = true;
+        //                }
+        //                else
+        //                {
+        //                    Pickaxe2 = false;
+        //                    subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+        //                }
+        //                yDown = false;
+        //            }
+        //            else if (nDown == true)
+        //            {
+        //                gameState = "running";
+        //            }
+        //            break;
+        //        case "Sword1":
+        //            if (upDown == true)
+        //            {
+        //                anvilMode = "Pickaxe";
+        //                upDown = false;
+        //            }
+        //            else if (upDown == true && pickaxe == true)
+        //            {
+        //                anvilMode = "Pickaxe1";
+        //                upDown = false;
+        //            }
+        //            else if (yDown == true && sword == true)
+        //            {
+        //                if (inventory[4] == 12 && inventory[5] == 7 && inventory[6] == 2)
+        //                {
+        //                    Sword2 = true;
+        //                }
+        //                else
+        //                {
+        //                    Sword2 = false;
+        //                    subtitleLabel.Text = "You don't have enough resources to make this upgrade.";
+        //                }
+        //                yDown = false;
+        //            }
+        //            else if (nDown == true)
+        //            {
+        //                gameState = "running";
+        //            }
+        //            break;
+        //    }
+        //}
 
         public static void ChangeScreen(UserControl current, UserControl next)
         {

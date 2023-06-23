@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace Final_IslandSurvivalPt2
 {
+    //e is used for graphics
+    //use b for short form
+    //b = bad guys
+
+
     public class Enemies
     {
         public int x, y, xSpeed, ySpeed;
         public int size = 30;
         public int lives = 10;
+        public int EDamageAmount;
 
         public Enemies (int _x, int _y, int _xSpeed, int _ySpeed)
         {
@@ -23,7 +29,7 @@ namespace Final_IslandSurvivalPt2
 
         public void Move(int width, int height)
         {
-            x -= xSpeed;
+            y -= ySpeed;
         }
 
         public bool Collision(Player p)
@@ -33,13 +39,13 @@ namespace Final_IslandSurvivalPt2
 
             if (carRec.IntersectsWith(playerRec))
             {
-                if (ySpeed > 0)
+                if (xSpeed > 0)
                 {
                     p.y = 310;
                     p.x = 120;
                 }
 
-                ySpeed *= -1;
+                xSpeed *= -1;
                 return true;
             }
 

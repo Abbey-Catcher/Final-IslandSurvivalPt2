@@ -30,6 +30,7 @@
         {
             this.attackBtn = new System.Windows.Forms.Button();
             this.runBtn = new System.Windows.Forms.Button();
+            this.moveLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // attackBtn
@@ -54,11 +55,23 @@
             this.runBtn.UseVisualStyleBackColor = true;
             this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
             // 
+            // moveLabel
+            // 
+            this.moveLabel.BackColor = System.Drawing.Color.Transparent;
+            this.moveLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.moveLabel.ForeColor = System.Drawing.Color.White;
+            this.moveLabel.Location = new System.Drawing.Point(55, 283);
+            this.moveLabel.Name = "moveLabel";
+            this.moveLabel.Size = new System.Drawing.Size(330, 75);
+            this.moveLabel.TabIndex = 2;
+            this.moveLabel.Text = "label1";
+            // 
             // FightScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.moveLabel);
             this.Controls.Add(this.runBtn);
             this.Controls.Add(this.attackBtn);
             this.Name = "FightScreen";
@@ -71,5 +84,6 @@
 
         private System.Windows.Forms.Button attackBtn;
         private System.Windows.Forms.Button runBtn;
+        private System.Windows.Forms.Label moveLabel;
     }
 }

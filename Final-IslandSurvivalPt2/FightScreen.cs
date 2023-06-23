@@ -14,6 +14,7 @@ namespace Final_IslandSurvivalPt2
     {
         Random randGen = new Random();
 
+
         public FightScreen()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace Final_IslandSurvivalPt2
             
             playerDamageAmount = randGen.Next(1, 8);
             //enemy health goes down
-             = enemyLives - playerDamageAmount;
-            enemyLivesLabel.Text = $"Enemy Health: {enemyLives}.\n You dealt {playerDamageAmount} damage.";
+                = enemyLives - playerDamageAmount;
+            moveLabel.Text = $"Enemy Health: {enemyLives}.\n You dealt {playerDamageAmount} damage.";
+            
 
             //enemy attack/player health goes down
             enemyDamageAmount = randGen.Next(1, 6);
