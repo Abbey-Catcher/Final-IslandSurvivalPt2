@@ -56,14 +56,6 @@ namespace Final_IslandSurvivalPt2
         bool resource02 = false;
         bool resource03 = false;
 
-        //control keys
-        bool leftDown = false;
-        bool rightDown = false;
-        bool upDown = false;
-        bool downDown = false;
-        bool yDown = false;
-        bool nDown = false;
-
         //brushes
         SolidBrush greenBrush = new SolidBrush(Color.Green);
         SolidBrush goldBrush = new SolidBrush(Color.Gold);
@@ -771,9 +763,5 @@ namespace Final_IslandSurvivalPt2
             }
         }
 
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-
-        }
     }
 }
