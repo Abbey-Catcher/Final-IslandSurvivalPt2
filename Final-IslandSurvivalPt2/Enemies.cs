@@ -17,7 +17,7 @@ namespace Final_IslandSurvivalPt2
         public int x, y, xSpeed, ySpeed;
         public int size = 30;
         public int lives = 10;
-        public int EDamageAmount;
+        public static int EDamageAmount;
 
         public Enemies (int _x, int _y, int _xSpeed, int _ySpeed)
         {

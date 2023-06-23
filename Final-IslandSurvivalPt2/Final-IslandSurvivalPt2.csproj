@@ -65,11 +65,11 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryScreen.cs">
+    <Compile Include="LoseScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InventoryScreen.Designer.cs">
-      <DependentUpon>InventoryScreen.cs</DependentUpon>
+    <Compile Include="LoseScreen.Designer.cs">
+      <DependentUpon>LoseScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +81,12 @@
     <Compile Include="UpgradeTools.Designer.cs">
       <DependentUpon>UpgradeTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinScreen.Designer.cs">
+      <DependentUpon>WinScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FightScreen.resx">
       <DependentUpon>FightScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,8 +96,8 @@
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InventoryScreen.resx">
-      <DependentUpon>InventoryScreen.cs</DependentUpon>
+    <EmbeddedResource Include="LoseScreen.resx">
+      <DependentUpon>LoseScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +109,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WinScreen.resx">
+      <DependentUpon>WinScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

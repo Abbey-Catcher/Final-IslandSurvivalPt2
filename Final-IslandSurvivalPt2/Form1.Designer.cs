@@ -124,7 +124,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(480, 648);
+            this.ClientSize = new System.Drawing.Size(480, 650);
             this.Controls.Add(this.heroLivesLabel);
             this.Controls.Add(this.enemyLivesLabel);
             this.Controls.Add(this.inventoryRLabel);

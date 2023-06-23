@@ -13,6 +13,7 @@ namespace Final_IslandSurvivalPt2
         public int width = 10;
         public int height = 10;
         public int lives = 20;
+        public static int PDamageAmount;
 
         public Player(int _x, int _y)
         {
