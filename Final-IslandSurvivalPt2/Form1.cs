@@ -25,9 +25,7 @@ namespace Final_IslandSurvivalPt2
         Rectangle hammerTool = new Rectangle(200, 500, 20, 20);
 
         //hero.Location = new Point(325, 475);
-        Rectangle hero = new Rectangle(325, 475, 30, 40);
-        int heroSpeed = 10;
-        int heroLives = 20;
+        //Rectangle hero = new Rectangle(325, 475, 30, 40);
 
         //inventory contents
         bool axe = false;
@@ -44,11 +42,11 @@ namespace Final_IslandSurvivalPt2
         List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
 
         //creating enemies
-        Rectangle enemyFight = new Rectangle(50, 50, 50, 50);
+        //Rectangle enemyFight = new Rectangle(50, 50, 50, 50);
         List<Rectangle> enemy = new List<Rectangle>();
-        List<int> enemySpeeds = new List<int>();
-        int enemySize = 30;
-        int enemyLives = 10;
+        //List<int> enemySpeeds = new List<int>();
+        //int enemySize = 30;
+        //int enemyLives = 10;
 
         //creating resources
         Rectangle resource1 = new Rectangle(125, 250, 20, 20);
@@ -106,58 +104,7 @@ namespace Final_IslandSurvivalPt2
             enemySpeeds.Clear();
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Left:
-                    leftDown = true;
-                    break;
-                case Keys.Right:
-                    rightDown = true;
-                    break;
-                case Keys.Up:
-                    upDown = true;
-                    break;
-                case Keys.Down:
-                    downDown = true;
-                    break;
-                case Keys.Y:
-                    yDown = true;
-                    break;
-                case Keys.N:
-                    nDown = true;
-                    break;
-                case Keys.Space:
-                    if (gameState == "waiting" || gameState == "lose" || gameState == "win")
-                    {
-                        GameInitialize();
-                    }
-                    break;
-                case Keys.Escape:
-                    if (gameState == "waiting" || gameState == "lose" || gameState == "win")
-                    {
-                        Application.Exit();
-                    }
-                    break;
-                case Keys.I:
-                    if (gameState == "running")
-                    {
-                        inventoryTLabel.Visible = true;
-                        inventoryRLabel.Visible = true;
-
-                        inventoryTLabel.Text = $"Axe:   {inventory[0]}\n";
-                        inventoryTLabel.Text += $"Pickaxe: {inventory[1]}\n";
-                        inventoryTLabel.Text += $"Sword:  {inventory[2]}\n";
-                        inventoryTLabel.Text += $"Hammer:  {inventory[3]}\n";
-
-                        inventoryRLabel.Text = $"Wood: {inventory[4]}\n";
-                        inventoryRLabel.Text += $"Stone:  {inventory[5]}\n";
-                        inventoryRLabel.Text += $"Iron:  {inventory[6]}\n";
-                    }
-                    break;
-            }
-        }
+        
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -822,6 +769,11 @@ namespace Final_IslandSurvivalPt2
                     }
                     break;
             }
+        }
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
         }
     }
 }
