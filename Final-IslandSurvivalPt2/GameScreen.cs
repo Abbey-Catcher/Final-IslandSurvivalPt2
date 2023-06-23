@@ -12,6 +12,10 @@ namespace Final_IslandSurvivalPt2
 {
     public partial class GameScreen : UserControl
     {
+        List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
+        List<Enemies> enemy = new List<Enemies>();
+        List<Resource1> resource1 = new List<Resource1>();
+
         Player hero;
 
         //control keys
@@ -22,10 +26,24 @@ namespace Final_IslandSurvivalPt2
         bool yDown = false;
         bool nDown = false;
 
+        //inventory tools
+        bool axe = false;
+        bool pickaxe = false;
+        bool sword = false;
+        bool hammer = false;
+
         public GameScreen()
         {
             InitializeComponent();
+            GameInitialize();
         }
+
+        public void GameInitialize()
+        {
+            gameTimer.Enabled = true;
+            
+        }
+
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
@@ -117,6 +135,20 @@ namespace Final_IslandSurvivalPt2
                 //    }
                 //    break;
             }
+
+        public void gameTimer_Tick(object sender, EventArgs e)
+        {
+            //collision
+            foreach (Enemies e in enemy)
+            {
+                if (e.Collision(hero))
+                {
+                    FightScreen fs = new FightScreen();
+                    this.Controls.Add(fs);
+                }
+            }
+            
         }
+    }
     }
 }

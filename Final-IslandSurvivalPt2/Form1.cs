@@ -27,11 +27,7 @@ namespace Final_IslandSurvivalPt2
         //hero.Location = new Point(325, 475);
         //Rectangle hero = new Rectangle(325, 475, 30, 40);
 
-        //inventory contents
-        bool axe = false;
-        bool pickaxe = false;
-        bool sword = false;
-        bool hammer = false;
+        
 
         bool Axe2 = false;
         bool Pickaxe2 = false;
@@ -39,17 +35,13 @@ namespace Final_IslandSurvivalPt2
 
 
         //inventory system
-        List<int> inventory = new List<int>(new int[] { 0, 0, 0, 0, 0, 0, 0 });
+        
 
         //creating enemies
         //Rectangle enemyFight = new Rectangle(50, 50, 50, 50);
-        List<Rectangle> enemy = new List<Rectangle>();
-        //List<int> enemySpeeds = new List<int>();
-        //int enemySize = 30;
-        //int enemyLives = 10;
 
         //creating resources
-        Rectangle resource1 = new Rectangle(125, 250, 20, 20);
+        //Rectangle resource1 = new Rectangle(125, 250, 20, 20);
         Rectangle resource2 = new Rectangle(325, 250, 20, 20);
         Rectangle resource3 = new Rectangle(250, 400, 20, 20);
         bool resource01 = false;
@@ -90,44 +82,7 @@ namespace Final_IslandSurvivalPt2
             inventoryTLabel.Text = "";
 
             inventoryImage.Visible = true;
-            gameTimer.Enabled = true;
-            gameState = "running";
-            enemy.Clear();
-            enemySpeeds.Clear();
-        }
-
-        
-
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Left:
-                    leftDown = false;
-                    break;
-                case Keys.Right:
-                    rightDown = false;
-                    break;
-                case Keys.Up:
-                    upDown = false;
-                    break;
-                case Keys.Down:
-                    downDown = false;
-                    break;
-                case Keys.Y:
-                    yDown = false;
-                    break;
-                case Keys.N:
-                    nDown = false;
-                    break;
-                case Keys.I:
-                    if (gameState == "running")
-                    {
-                        inventoryTLabel.Visible = false;
-                        inventoryRLabel.Visible = false;
-                    }
-                    break;
-            }
+            
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -763,5 +718,17 @@ namespace Final_IslandSurvivalPt2
             }
         }
 
+        public static void ChangeScreen(UserControl current, UserControl next)
+        {
+            Form f = current.FindForm();
+            f.Controls.Remove(current);
+
+            next.Location = new Point((f.ClientSize.Width - next.Width) / 2,
+                (f.ClientSize.Height - next.Height) / 2);
+
+            //make form1 the same size as new screens
+            f.Controls.Add(next);
+            next.Focus();
+        }
     }
 }

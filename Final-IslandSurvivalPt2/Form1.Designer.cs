@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
             this.inventoryTLabel = new System.Windows.Forms.Label();
@@ -39,11 +37,6 @@
             this.heroLivesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gameTimer
-            // 
-            this.gameTimer.Interval = 20;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // titleLabel
             // 
@@ -151,8 +144,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label subtitleLabel;
         private System.Windows.Forms.Label inventoryTLabel;

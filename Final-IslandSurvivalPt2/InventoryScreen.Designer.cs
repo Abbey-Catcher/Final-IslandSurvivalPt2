@@ -1,6 +1,6 @@
 ﻿namespace Final_IslandSurvivalPt2
 {
-    partial class GameScreen
+    partial class InventoryScreen
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,28 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            this.SuspendLayout();
-            // 
-            // gameTimer
-            // 
-            this.gameTimer.Interval = 20;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
-            // 
-            // GameScreen
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "GameScreen";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer gameTimer;
     }
 }

@@ -65,15 +65,33 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryScreen.Designer.cs">
+      <DependentUpon>InventoryScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.cs" />
+    <Compile Include="UpgradeTools.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpgradeTools.Designer.cs">
+      <DependentUpon>UpgradeTools.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FightScreen.resx">
+      <DependentUpon>FightScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryScreen.resx">
+      <DependentUpon>InventoryScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
